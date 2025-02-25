@@ -10,7 +10,13 @@ CREATE TABLE products(
 
 )
 INSERT INTO products(name,description,img,quantity,category,color,price)
-VALUES();
+VALUES
+('optimuz prime','a robot','https://images.unsplash.com/photo-1676534228087-a5066e2197e0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8b3B0aW11c3xlbnwwfHwwfHx8MA%3D%3D',20,'toy','red and blue','9999'),
+
+('bumble bee','a robot','https://images.unsplash.com/photo-1676534228087-a5066e2197e0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8b3B0aW11c3xlbnwwfHwwfHx8MA%3D%3D',20,'toy','red and blue','9999')
+('woody ','a robot','https://images.unsplash.com/photo-1676534228087-a5066e2197e0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8b3B0aW11c3xlbnwwfHwwfHx8MA%3D%3D',20,'toy','red and blue','9999')
+('doreamon','a robot','https://images.unsplash.com/photo-1676534228087-a5066e2197e0?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8b3B0aW11c3xlbnwwfHwwfHx8MA%3D%3D',20,'toy','red and blue','9999')
+;
 
 SELECT * FROM products where p_id = id
 
@@ -22,3 +28,7 @@ CREATE TABLE users (
     password VARCHAR(250) NOT NULL,
     role VARCHAR(100) DEFAULT 'user'
 )
+
+SELECT * FROM products
+
+select * from products where name ilike '%b%';
