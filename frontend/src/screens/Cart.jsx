@@ -5,6 +5,8 @@ import EmptyCart from "../components/EmptyCart";
 
 const Cart = () => {
   const cartItem = useSelector((state) => state.cartReducer.cart);
+
+  
   const [price,setPrice] = useState();
   const [quantiy,setquantity] = useState();
 
@@ -19,7 +21,8 @@ const Cart = () => {
     setPrice(totalPrice)
     setquantity(totalquantity)
   },[cartItem])
-
+  console.log(cartItem);
+  
   return (
    
     <div className="flex flex-col min-h-screen">
@@ -30,7 +33,7 @@ const Cart = () => {
       {
         cartItem.length > 0 
         ? cartItem.map((item) => (
-            <CartItem key={item.id} item={item} />
+            <CartItem key={item.cart_id} item={item} />
           ))
         : <EmptyCart />
       }
@@ -39,7 +42,7 @@ const Cart = () => {
 
 
   <div className="bg-zinc-300 fixed bottom-2 left-1/2 transform -translate-x-1/2 w-[33rem] h-9 rounded-xl flex items-center justify-end px-4">
-    <p>Subtotal({quantiy} item): ₹ {price}</p>
+    <p>Subtotal({quantiy} item): $:{price}</p>
   </div>
 </div>
 

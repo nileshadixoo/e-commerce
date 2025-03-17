@@ -2,21 +2,21 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import ProductCard from "../components/ProductCard";
 
+const url = import.meta.env.VITE_BASE_URL;
+
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-
- 
-  
+  const user_id = localStorage.getItem("user_id");
 
   useEffect(() => {
     axios
-      .get("https://fakestoreapi.com/products")
-      .then((res) => setProducts(res.data))
+      .get(`${url}/products/get-all`)
+      .then((res) => {
+        setProducts(res.data.products);
+      })
       .catch((err) => console.log(err))
-      .finally(setLoading(false))
-
-   
+      .finally(setLoading(false));
   }, []);
  
 
@@ -27,13 +27,7 @@ const Home = () => {
         {loading ? (
           <div>Loading...</div>
         ) : (
-          products.map((item) => (
-            <ProductCard
-              key={item.id}
-              item={item}
-              
-            />
-          ))
+          products.map((item) => <ProductCard key={item.p_id} item={item} />)
         )}
       </div>
     </div>
