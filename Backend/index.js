@@ -3,6 +3,7 @@ dotenv.config();
 import express, { urlencoded } from 'express'
 import userRoutes from "./routes/user.routes.js"
 import productRoutes from "./routes/products.routes.js"
+import cartRoutes from "./routes/cart.routes.js"
 import cookieParser from 'cookie-parser';
 import cors from "cors"
 
@@ -23,6 +24,9 @@ app.use('/auth',userRoutes)
 
 // product routes
 app.use('/products/',productRoutes)
+
+// cart routes
+app.use('/cart',cartRoutes)
 
 app.listen(port,()=>{
     console.log(`Server is listening on ${port}`);

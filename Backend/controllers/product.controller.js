@@ -3,9 +3,10 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js";
 
 export const uploadProduct = async (req, res) => {
   try {
-    const { name, description, price, quantity, category, color } = req.body;
+    const { name, description, price, stock, category, color } = req.body;
+    console.log(req.file)
 
-    if (!name || !description || !price || !quantity || !category || !color) {
+    if (!name || !description || !price || !stock || !category || !color) {
       return res.status(400).json({
         success: false,
         message: "Please provide the required field",
@@ -21,8 +22,8 @@ export const uploadProduct = async (req, res) => {
     const uploadFileUrl = await uploadOnCloudinary(localFilePath);
 
     const response = await pool.query(
-      "INSERT INTO products(name,description,img,quantity,category,color,price)VALUES($1,$2,$3,$4,$5,$6,$7) returning *",
-      [name, description, uploadFileUrl, quantity, category, color, price]
+      "INSERT INTO products(name,description,img,stock,category,color,price)VALUES($1,$2,$3,$4,$5,$6,$7) returning *",
+      [name, description, uploadFileUrl, stock, category, color, price]
     );
     return res.status(201).json({
       success: true,
@@ -42,8 +43,8 @@ export const updateProducts = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const { name, description, category, quantity, price, color } = req.body;
-    if (!name || !description || !price || !quantity || !category || !color) {
+    const { name, description, category, stock, price, color } = req.body;
+    if (!name || !description || !price || !stock || !category || !color) {
       return res.status(400).json({
         success: false,
         message: "Please provide the required field",
@@ -54,7 +55,7 @@ export const updateProducts = async (req, res) => {
       id,
     ]);
 
-    if (product.rows[0].length === 0) {
+    if (product.rows.length === 0) {
       return res.status(400).json({
         success: false,
         message: "Invalid product id",
@@ -78,8 +79,8 @@ export const updateProducts = async (req, res) => {
     }
 
     const updateProduct = await pool.query(
-      "UPDATE products SET (name,description,category,quantity,price) = ($1,$2,$3,$4,$5) WHERE p_id = $6 returning *",
-      [name, description, category, quantity, price, id]
+      "UPDATE products SET (name,description,category,stock,price) = ($1,$2,$3,$4,$5) WHERE p_id = $6 returning *",
+      [name, description, category, stock, price, id]
     );
     
     return res.status(200).json({

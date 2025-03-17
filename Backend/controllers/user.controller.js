@@ -5,7 +5,7 @@ import { createToken } from "../utils/util.js";
 export const registerUser = async(req,res)=>{
     try {
         const {username,email,password} = req.body;
-        if(!username,email,password){
+        if(!username,!email,!password){
             return res.status(400).json({
                 success:false,
                 message:"Please provide all the fields"
@@ -20,7 +20,7 @@ export const registerUser = async(req,res)=>{
         }
         const hashedPassword = await bcrypt.hash(password, 10);
         
-        const newUser = await pool.query("INSERT INTO users(username,email,password) VALUES($1,$2,$3) returning *",[username,email,hashedPassword])
+        const newUser = await pool.query("INSERT INTO users(username,email,password) VALUES($1,$2,$3) returning username,role",[username,email,hashedPassword])
 
        
         
@@ -29,6 +29,7 @@ export const registerUser = async(req,res)=>{
         return res.status(201).json({
             success:true,
             message:'User created successfully',
+            user:newUser.rows[0],
             token:token
         })
         
@@ -46,6 +47,7 @@ export const registerUser = async(req,res)=>{
 export const loginUser = async(req,res)=>{
     try {
         const {email,password} = req.body;
+        
         const user = await pool.query("SELECT * FROM users WHERE email=$1",[email]);
         if(user.rows.length===0){
             return res.status(401).json({
@@ -71,6 +73,11 @@ export const loginUser = async(req,res)=>{
         .json({
             success:true,
             message:"Logged in successfully",
+            user : {
+                user_id : user.rows[0].user_id,
+                username:user.rows[0].username,
+                role:user.rows[0].role
+            },
             token:token
         })
 
