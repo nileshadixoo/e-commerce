@@ -50,15 +50,15 @@ export const loginUser = async(req,res)=>{
         
         const user = await pool.query("SELECT * FROM users WHERE email=$1",[email]);
         if(user.rows.length===0){
-            return res.status(401).json({
+            return res.status(400).json({
                 success:false,
-                message:"Invalid email"
+                message:"Invalid credentials"
             })
         }
 
         const isPassword = await bcrypt.compare(password,user.rows[0].password);
         if(!isPassword){
-            return res.status(401).json({
+            return res.status(400).json({
                 success:false,
                 message:"Invalid credentials"
             })
@@ -83,7 +83,7 @@ export const loginUser = async(req,res)=>{
 
     } catch (error) {
         console.log(error);
-        res.status(401).json({
+        res.status(400).json({
             success:false,
             message:"Failed to login user"
         })
