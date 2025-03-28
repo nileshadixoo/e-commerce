@@ -20,15 +20,15 @@ export const uploadProduct = async (req, res) => {
       });
     }
     const uploadFileUrl = await uploadOnCloudinary(localFilePath);
-
+    console.log(uploadFileUrl);
     const response = await pool.query(
-      "INSERT INTO products(name,description,img,stock,category,color,price)VALUES($1,$2,$3,$4,$5,$6,$7) returning *",
+      "INSERT INTO products(name,description,img,stock,category,color,price)VALUES($1,$2,$3,$4,$5,$6,$7)  ",
       [name, description, uploadFileUrl, stock, category, color, price]
     );
     return res.status(201).json({
       success: true,
       message: "Product uploaded successfully",
-      product: response.rows[0],
+      
     });
   } catch (error) {
     console.log(error);
@@ -45,7 +45,7 @@ export const updateProducts = async (req, res) => {
 
     const { name, description, category, stock, price, color } = req.body;
     if (!name || !description || !price || !stock || !category || !color) {
-      return res.status(400).json({
+      return res.status(404).json({
         success: false,
         message: "Please provide the required field",
       });

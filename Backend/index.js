@@ -28,7 +28,9 @@ app.use('/products/',productRoutes)
 // cart routes
 app.use('/cart',cartRoutes)
 
-app.listen(port,()=>{
+export const server = app.listen(port,()=>{
     console.log(`Server is listening on ${port}`);
     
 })
+
+export default app
