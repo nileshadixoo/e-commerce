@@ -17,9 +17,9 @@ export const createToken = async (user_email) => {
   }
 };
 
-export const verifyToken =  (token) => {
+export const verifyToken =  async(token) => {
     try {
-        var decoded = jwt.verify(token,secret);
+        var decoded = await jwt.verify(token,secret);
         return decoded;
     } catch (err) {
       if (err.name === 'TokenExpiredError') {

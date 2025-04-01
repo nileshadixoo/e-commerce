@@ -62,7 +62,7 @@ export const updateProducts = async (req, res) => {
       });
     }
 
-    if (req?.file?.path) {
+    if (req.file?.path) {
       try {
         const newImg = await uploadOnCloudinary(req.file.path);
         await pool.query("UPDATE products SET img = $1 where p_id=$2", [
@@ -125,6 +125,7 @@ export const getSingleProduct = async (req, res) => {
             message:"Invalid product id"
         })
     }
+
     return res.status(200).json({
       success: true,
       product: product.rows[0],
