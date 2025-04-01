@@ -1,17 +1,14 @@
 import request from "supertest";
-import app ,{server }from "..";
 import { pool } from "../database/connect.database";
 import bcrypt from "bcrypt";
 import { createToken } from "../utils/util";
+import createServer from "../utils/server";
 
 jest.mock("../database/connect.database");
 jest.mock("../utils/util");
 jest.mock("bcrypt");
+const app = createServer();
 
-
-afterAll(() => {  
-  server.close()
-})
 // test for user login
 describe("test create route", () => {
   beforeEach(() => {

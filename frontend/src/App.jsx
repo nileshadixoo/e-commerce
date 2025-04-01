@@ -50,7 +50,6 @@ const App = () => {
             </ProtectedRoute>
           }
         />
-        // admin Routes
         <Route
           path="/dashboard"
           element={

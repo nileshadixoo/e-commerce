@@ -1,24 +1,22 @@
 import { pool } from "../database/connect.database.js";
 import { verifyToken } from "../utils/util.js";
 
-
-
-
 export const userAuth = async(req,res,next)=>{
     try {
-        const token = req.cookies?.token || req.headers?.token
+        const token = req.cookies?.token || req.headers?.authorization
       
         if(!token){
             return res.status(401).json({
                 success:false,
-                message:"Unauthenticated"
+                message:"Unauthorized"
             })
         }
         const decoded =  verifyToken(token);
+        console.log(decoded)
         req.user = decoded.user;
         next()
     } catch (error) {
-        console.log(error);
+        throw new Error(error)
         
     }
 }
