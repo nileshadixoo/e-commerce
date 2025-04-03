@@ -7,7 +7,6 @@ const url = import.meta.env.VITE_BASE_URL;
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const user_id = localStorage.getItem("user_id");
 
   useEffect(() => {
     axios

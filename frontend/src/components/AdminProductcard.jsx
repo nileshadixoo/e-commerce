@@ -9,7 +9,6 @@ import {Link} from "react-router"
 
 const AdminProductcard =({ item }) => {
     const token = localStorage.getItem('token')
-    console.log();
     const deleteProduct=(item)=>{
         axios.delete(`${import.meta.env.VITE_BASE_URL}/products/${item.p_id}`,{
             headers:{
@@ -43,7 +42,7 @@ const AdminProductcard =({ item }) => {
         </div>
        <div className="flex items-center justify-center gap-4">
        <Link to={`/dashboard/${item.p_id}`}
-          onClick={() => onAddToCart(item)}
+          
           className="bg-amber-300 py-1 px-10 rounded-full -ml-1 cursor-pointer flex items-center gap-2"
         >
           <FiEdit />  

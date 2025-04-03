@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { FaCartPlus } from "react-icons/fa";
-import { addToCart } from "../redux/slice/cartSlice";
-import { useDispatch } from "react-redux";
-import toast from "react-hot-toast";
 import axios from "axios";
+import React from "react";
+import toast from "react-hot-toast";
+import { FaCartPlus } from "react-icons/fa";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/slice/cartSlice";
 
 const ProductCard = ({ item }) => {
   const dispatch = useDispatch();
