@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { FaShoppingCart } from "react-icons/fa";
+import axios from "axios";
+import React, { useEffect } from "react";
+import toast from "react-hot-toast";
+import { FaSearch, FaShoppingCart } from "react-icons/fa";
+import { IoMdLogOut } from "react-icons/io";
+import { MdAdminPanelSettings } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router";
-import { FaSearch } from "react-icons/fa";
-import { MdAdminPanelSettings } from "react-icons/md";
-import { IoMdLogOut } from "react-icons/io";
-import axios from "axios";
-import toast from "react-hot-toast";
+import { emptyCart } from "../redux/slice/cartSlice";
 import { userNotExist } from "../redux/slice/userSlice";
-import { emptyCart, setCartFromLocalStorage } from "../redux/slice/cartSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();

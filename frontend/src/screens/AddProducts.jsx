@@ -1,7 +1,7 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const AddProducts = () => {
       const [name, setName] = useState("");
@@ -11,7 +11,6 @@ const AddProducts = () => {
       const [color, setColor] = useState("");
       const [category, setCategory] = useState("");
       const [productImg, setProductImg] = useState(null);
-      const { productId } = useParams();
       const token = localStorage.getItem("token");
       const navigate = useNavigate();
 

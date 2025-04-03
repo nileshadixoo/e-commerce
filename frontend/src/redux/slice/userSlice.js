@@ -16,7 +16,7 @@ const userSlice = createSlice({
             state.loading = false,
             state.user = action.payload
         },
-        userNotExist:(state,action)=>{
+        userNotExist:(state)=>{
             state.loading = true,
             state.user = null
             localStorage.removeItem('isAdmin')
