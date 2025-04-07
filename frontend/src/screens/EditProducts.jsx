@@ -19,7 +19,7 @@ const EditProducts = () => {
     axios
       .get(`${import.meta.env.VITE_BASE_URL}/products/get/${productId}`, {
         headers: {
-          token: token,
+          Authorization: token,
         },
       })
       .then((res) => {
@@ -63,7 +63,7 @@ const EditProducts = () => {
         },
         {
           headers: {
-            token: token,
+            Authorization: token,
           },
         }
       )

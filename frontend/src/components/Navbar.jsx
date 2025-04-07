@@ -24,6 +24,8 @@ const Navbar = () => {
 
         dispatch(userNotExist());
         dispatch(emptyCart());
+        localStorage.removeItem("cart");
+        localStorage.removeItem("user_id");
 
         navigate("/login");
       })

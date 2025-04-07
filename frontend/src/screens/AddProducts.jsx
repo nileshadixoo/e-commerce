@@ -23,37 +23,8 @@ const AddProducts = () => {
     }
   };
  console.log( productImg)
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     axios
-//       .post(
-//         `http://localhost:8000/products/upload`,
-//         {
-//           name,
-//           description,
-//           price,
-//           quantity,
-//           category,
-//           color,
-//           "product-img":productImg,
-//         },
-//         {
-//           headers: {
-//             token: token,
-//           },
-//         }
-//       )
-//       .then((res) => {
-//         console.log(res.data)
-//         // toast.success(res.data.message);
 
-//         navigate("/");
-//       })
-//       .catch((err) => {
-//         console.log(err)
-//         // toast.error(err.response.data.message)
-//       });
-//   };
+//     
 
 const handleSubmit = (e) => {
     e.preventDefault();
@@ -76,7 +47,7 @@ const handleSubmit = (e) => {
         {
           headers: {
             "Content-Type": "multipart/form-data", // Optional, axios will set it automatically when using FormData
-            token: token,
+            Authorization: token,
           },
         }
       )
@@ -196,7 +167,7 @@ const handleSubmit = (e) => {
               type="submit"
               className="px-6 py-2 bg-indigo-600 text-white rounded-md shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              Update Product
+              Upload Product
             </button>
           </div>
         </div>
