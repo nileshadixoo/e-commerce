@@ -152,6 +152,7 @@ export const deleteProduct = async (req, res) => {
             message:"Invalid product id"
         })
     }
+    await pool.query("DELETE FROM cart WHERE product_id = $1",[id])
     await pool.query('DELETE FROM products WHERE p_id = $1',[id])
     
     return res.status(200).json({

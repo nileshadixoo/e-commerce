@@ -10,11 +10,12 @@ import {Link} from "react-router"
 const AdminProductcard =({ item }) => {
     const token = localStorage.getItem('token')
     const deleteProduct=(item)=>{
-        axios.delete(`${import.meta.env.VITE_BASE_URL}/products/${item.p_id}`,{
+         axios.delete(`${import.meta.env.VITE_BASE_URL}/products/${item.p_id}`,{
             headers:{
-                token:token
+                Authorization:token
             }
         })
+        // fetchProducts()
   .then(response => {
     toast.success(response.data.message);
     

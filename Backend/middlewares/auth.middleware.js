@@ -3,17 +3,16 @@ import { verifyToken } from "../utils/util.js";
 
 export const userAuth = async(req,res,next)=>{
     try {
-        const token = req.cookies?.token || req.headers?.authorization
-      
+        const token =  req.cookies.token || req.headers.authorization
         if(!token){
             return res.status(401).json({
                 success:false,
                 message:"Unauthorized"
             })
         }
-        const decoded =  verifyToken(token);
-        console.log(decoded)
+        const decoded = await verifyToken(token);
         req.user = decoded.user;
+
         next()
     } catch (error) {
         throw new Error(error)

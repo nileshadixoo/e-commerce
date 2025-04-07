@@ -19,19 +19,30 @@ const AdminDashboard = () => {
  
   
 
-  useEffect(() => {
-    axios
-      .get(`${url}/products/get-all`)
-      .then((res) => {
+  // useEffect(() => {
+  //   axios
+  //     .get(`${url}/products/get-all`)
+  //     .then((res) => {
 
-        setProducts(res.data.products)
-      })
-      .catch((err) => console.log(err))
-      .finally(setLoading(false))
+  //       setProducts(res.data.products)
+  //     })
+  //     .catch((err) => console.log(err))
+  //     .finally(setLoading(false))
 
    
-  }, [products]);
- 
+  // }, [products]);
+  const fetchProducts = () => {
+    setLoading(true);
+    axios
+      .get(`${url}/products/get-all`)
+      .then((res) => setProducts(res.data.products))
+      .catch((err) => console.log(err))
+      .finally(() => setLoading(false));
+  };
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
 
   return (
     <div className=" h-screen px-5 py-2 ">
@@ -45,6 +56,7 @@ const AdminDashboard = () => {
         ) : (
           products.map((item) => (
             <AdminProductcard
+          
               key={item.p_id}
               item={item}
               
